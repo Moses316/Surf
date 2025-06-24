@@ -1,1 +1,74 @@
-<html><body><h1>Surf沖神 測試版</h1><p>輸入股票代號進行分析。</p></body></html>
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Surf沖神 測試版</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 30px;
+    }
+    input {
+      padding: 10px;
+      font-size: 16px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: none;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+      background-color: #ff5c5c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #1e1e1e;
+      border-radius: 8px;
+    }
+    .highlight {
+      font-weight: bold;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <h1>📈 Surf沖神 測試版</h1>
+  <p>輸入股票代號進行分析</p>
+  
+  <input type="text" id="symbolInput" placeholder="例如：3376">
+  <button onclick="runAnalysis()">開始分析</button>
+
+  <div class="result" id="resultBox" style="display: none;">
+    <p>股票代號：<span id="stockSymbol" class="highlight"></span></p>
+    <p>即時價格：<span id="stockPrice" class="highlight">-</span></p>
+    <p>建議方向：<span id="direction" class="highlight">-</span></p>
+    <p>建議價格：<span id="suggestPrice" class="highlight">-</span></p>
+    <p>觸發條件：<span id="triggers" class="highlight">-</span></p>
+  </div>
+
+  <script>
+    function runAnalysis() {
+      const symbol = document.getElementById("symbolInput").value.trim();
+      if (!symbol) return alert("請輸入股票代號");
+
+      // 模擬顯示資料（這裡未串接 API，可日後補上）
+      document.getElementById("resultBox").style.display = "block";
+      document.getElementById("stockSymbol").textContent = symbol;
+      document.getElementById("stockPrice").textContent = "218.5（模擬）";
+      document.getElementById("direction").textContent = "做多（模擬）";
+      document.getElementById("suggestPrice").textContent = "220.0";
+      document.getElementById("triggers").textContent = "大單敲入、型態確認、勝率88%";
+    }
+  </script>
+</body>
+</html>
