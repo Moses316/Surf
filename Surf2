@@ -1,47 +1,84 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1.0" />
-<title>Surf沖神 測試版</title>
-<style>
-  body{margin:0;background:#121212;color:#fff;font-family:-apple-system,Segoe UI,Roboto,sans-serif;text-align:center;padding:40px}
-  h1{margin-top:0}
-  input{padding:10px;font-size:16px;width:160px;border-radius:6px;border:none}
-  button{padding:10px 20px;font-size:16px;margin-left:6px;border:none;border-radius:6px;background:#ff5c5c;color:#fff}
-  .panel{margin-top:26px;padding:24px;background:#1e1e1e;border-radius:8px;line-height:1.7}
-  .hl{font-weight:bold;color:#ffd24d}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Surf沖神 測試版</title>
+  <style>
+    body {
+      background-color: #111;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 50px 20px;
+    }
+    h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    input[type="text"] {
+      padding: 10px;
+      font-size: 18px;
+      border-radius: 5px;
+      border: none;
+      width: 80%;
+      max-width: 300px;
+      margin-top: 10px;
+    }
+    button {
+      margin-top: 20px;
+      background-color: #ff5e5e;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      font-size: 18px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 40px;
+      text-align: left;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: #222;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .highlight {
+      font-weight: bold;
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #f66;
+    }
+  </style>
 </head>
 <body>
   <h1>📈 Surf沖神 測試版</h1>
   <p>輸入股票代號進行分析</p>
+  <input type="text" id="stockCode" placeholder="例如：3376" />
+  <br/>
+  <button onclick="startAnalysis()">開始分析</button>
 
-  <div>
-    <input id="sym" placeholder="例如 3376" />
-    <button onclick="run()">開始</button>
+  <div id="result" style="display:none;">
+    <div class="highlight" id="signal">建議方向：做多 🚀</div>
+    <div>建議價格：220</div>
+    <div>即時價格：219.5</div>
+    <div>觸發條件：大單敲入、型態確認、一星二陰、勝率88%</div>
   </div>
 
-  <div id="box" class="panel" style="display:none">
-    <div>股票代號：<span id="s" class="hl"></span></div>
-    <div>即時價格：<span id="p" class="hl"></span></div>
-    <div>建議方向：<span id="d" class="hl"></span></div>
-    <div>建議價格：<span id="sp" class="hl"></span></div>
-    <div>觸發條件：<span id="t" class="hl"></span></div>
-  </div>
+  <script>
+    function startAnalysis() {
+      const code = document.getElementById("stockCode").value;
+      if (!code) {
+        alert("請輸入股票代號！");
+        return;
+      }
 
-<script>
-function run(){
-  const sym=document.getElementById('sym').value.trim();
-  if(!sym){alert('請輸入股票代號');return;}
-  // TODO: 這裡串你後端中繼 API，以下先用模擬資料
-  document.getElementById('box').style.display='block';
-  document.getElementById('s').textContent=sym;
-  document.getElementById('p').textContent='218.5 (模擬)';
-  document.getElementById('d').textContent='做多 (模擬)';
-  document.getElementById('sp').textContent='220.0';
-  document.getElementById('t').textContent='大單敲入、型態確認、勝率88%';
-}
-</script>
+      // 模擬展示
+      document.getElementById("result").style.display = "block";
+      document.getElementById("signal").innerHTML = "建議方向：做多 🚀";
+    }
+  </script>
 </body>
 </html>
